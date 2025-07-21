@@ -6,11 +6,18 @@ body {
     min-height: 100vh;
     display: grid;
     place-items: center;
+    user-select: none;
 }
 
 .font {
-    font-family: "Micro 5", sans-serif;
-    font-weight: 400;
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.font2 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -20,20 +27,19 @@ body {
     row-gap: 80px;
     width: 450px;
     height: 650px;
-    border: 4px solid #ce64ff;
+    border: 4px solid #7402ff;
     backdrop-filter: blur(5px);
     padding: 8px;
-    border-radius: 15px;
-    /* background-color: black; */
+    border-radius: 8px 8px 40px 8px;
     background-image: url("/images/download.png");
     background-position: center;
     background-size: cover;
-    box-shadow: 0px 4px 0px 5px #000000;
-    /* background-image: url("/images/gameboyBg.jpg"); */
+    box-shadow: 0px 5px 1px 6px #021c53;
 
 }
 
 .screen {
+    position: relative;
     display: grid;
     align-content: center;
     grid-template-columns: 1fr 1fr 1fr;
@@ -42,8 +48,47 @@ body {
     height: 310px;
     padding: 25px;
     background: linear-gradient(to bottom, #8BAC0F, #9BBC0F);
+    border-radius: 8px;
 }
 
+/* starter text */
+.starter_text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 4rem;
+    color: #FFFFFF;
+    width: 100%;
+
+}
+
+.starter_text:before {
+    content: "Tic Tac Toe";
+    position: absolute;
+    color: rgba(0, 0, 0, 0.461);
+    transform-origin: bottom;
+    transform: translate(48px, 0) skew(25deg);
+    top: 0;
+    left: 5px;
+    z-index: -1;
+    opacity: 1;
+}
+
+.text_disappear {
+    animation: textDisappear 1s 1 forwards;
+}
+
+@keyframes textDisappear {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
 
 /* blocks */
 .block {
@@ -51,7 +96,39 @@ body {
     justify-content: center;
     align-items: center;
     transition: .5s;
+    opacity: 0;
+}
 
+.start_game {
+    /* display: flex; */
+    /* animation: startGame 2.5s 5s 1 forwards; */
+    animation: startGame 2.5s linear 5s 1 forwards;
+}
+
+@keyframes startGame {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: .4;
+    }
+
+    30% {
+        opacity: .2;
+    }
+
+    40% {
+        opacity: .7;
+    }
+
+    55% {
+        opacity: .5;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .block:not(.block3, .block6, .block9) {
@@ -178,7 +255,7 @@ body {
     width: 160px;
     min-height: 160px;
     /* background-color: black; */
-    background-color: #ff0000;
+    background-color: #303B47;
     border-radius: 15px;
 }
 
@@ -186,13 +263,13 @@ body {
     position: absolute;
     width: 46px;
     height: 46px;
-    filter: drop-shadow(0px 4px 0px #4a4949);
+    filter: drop-shadow(0px 4px 0px #181818);
     transition: .1s;
     /* border: 4px solid red; */
 }
 
 .shadow:active {
-    filter: drop-shadow(0px 0px 0px #FFFFFF);
+    filter: drop-shadow(0px 0px 0px);
 }
 
 .shadow:active>div {
@@ -217,14 +294,14 @@ body {
 
 
 .s_left {
-    top: 50px;
+    top: 57px;
     left: 15px;
     transform: rotate(90deg);
 }
 
 .s_top {
     /* transform: rotate(90deg); */
-    top: 14px;
+    top: 20px;
     left: auto;
     transform: rotate(180deg);
 
@@ -233,33 +310,65 @@ body {
 .s_right {
     transform: rotate(-90deg);
     right: 15px;
-    top: 50px;
+    top: 57px;
 
 }
 
 .s_bottom {
     left: auto;
-    bottom: 22px;
+    bottom: 20px;
 }
 
 /* div for reset/start button */
 .start_reset_btn {
-    background-color: #c3c0c1;
-    border-radius: 15px;
-    padding: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #342A42;
+    border-radius: 50px;
+    padding-inline: 10px;
+    column-gap: 40px;
+    transform: rotate(-30deg);
+    border: 3px solid #FFFFFF;
+
 }
 
-.start_reset_btn>img {
+.start_reset_btn>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
+    transition: .3s;
 }
 
+.start_reset_btn>div>img {
+    filter: drop-shadow(0 3px 0px rgb(155, 4, 255));
+    transition: .3s;
+}
+
+.start_reset_btn>div>img:active {
+    transform: translate(0, 5px);
+    filter: drop-shadow(0 0px 0px rgb(155, 4, 255));
+}
+
+.reset_text,
 .start_btn {
-    transform: translate(-10px, 20px);
+    text-shadow: 0 3px 2px rgb(155, 4, 255);
+
 }
 
-.reset_btn {
-    transform: translate(10px, -10px)
+.reset_text {
+    transform: translate(0px, -10px);
 }
+
+.start_text {
+    transform: translate(0, -10px);
+    text-shadow: 0 3px 2px rgb(155, 4, 255);
+
+}
+
+
 
 .hide {
     display: none;

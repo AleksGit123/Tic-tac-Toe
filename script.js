@@ -12,72 +12,24 @@ const o = `
 
 let clickCount = 0;
 
-
-
-
 let board = [
     [[],[],[]],
     [[],[],[]],
     [[],[],[]],
 ]
 
-//board[row][column]
-//columns = index % 3;
-//rows = Math.floor(index / 3);
+// start game varibles 
+let startGameBtn = document.querySelector(".start_btn");
+let resetGameBtn = document.querySelector(".reset_btn");
+let starterText = document.querySelector(".starter_text");
 
+startGameBtn.addEventListener("click", () =>{
+    blocks.forEach((element) => {
+        element.classList.add("start_game");
 
-/*
-Win Cases:
-1.
-[
-    [[1/0],[],[]],
-    [[],[1/0],[]],
-    [[],[],[1/0]],
-]
-2.
-    [
-       [1/0],[1/0],[1/0]],
-       [[],[],[]],
-       [[],[],[]],
-    ]
-
-3.
-    [[],[],[]],
-    [[1/0],[1/0],[1/0]],
-    [[],[],[]],
-
-4.
-    [[],[],[]],
-    [[],[],[]],
-    [[1/0],[1/0],[1/0]],
-
-5.
-
-[
-    [[],[],[1/0]],
-    [[],[1/0],[]],
-    [[1/0],[],[]],
-]
-6.
-
-[
-    [[1/0],[],[]],
-    [[1/0],[],[]],
-    [[1/0],[],[]],
-]
-7.
-[
-    [[],[1/0],[]],
-    [[],[1/0],[]],
-    [[],[1/0],[]],
-]
-8.
-[
-    [[],[],[1/0]],
-    [[],[],[1/0]],
-    [[],[],[1/0]],
-]
-*/
+    })
+    starterText.classList.add("text_disappear");
+})
 
 let rows = 0;
 let columns = 0;
@@ -89,38 +41,59 @@ let storePoints = (element,index)  => {
 
 }
 
-let checkWinner = () =>{
+let winner = false;
+
+//check winner logic, it should be improved!!
+let checkWinner = (element) =>{
     for(let i in board){
         // check horizontal
         if(board[i][0][0] === 1 && board[i][1][0] === 1 && board[i][2][0] === 1){
             console.log(" X is winner");
+            winner = true;
+
             return;
         }
         else if(board[i][0][0] === 0 && board[i][1][0] === 0 && board[i][2][0] === 0){
             console.log(" O is winner");
+            winner = true;
             return;
         }
         
         //check vertical
         else if(board[0][i][0] === 1 && board[1][i][0] === 1 && board[2][i][0] === 1){
             console.log(" X is winner");
+            winner = true;
+
         }
         else if(board[0][i][0] === 0 && board[1][i][0] === 0 && board[2][i][0] === 0){
             console.log("O is winner")
+            winner = true;
+
         }
         // check diagonal \
         else if(board[0][0][0] === 1 && board[1][1][0] === 1 && board[2][2][0] === 1){
             console.log(" X is winner");
+            winner = true;
+
         }
         else if(board[0][0][0] === 0 && board[1][1][0] === 0 && board[2][2][0] === 0){
             console.log(" O is winner");
+            winner = true;
+
         }
         // check diagonal /
         else if(board[0][2][0] === 1 && board[1][1][0] === 1 && board[2][0][0] === 1){
             console.log(" X is winner");
+            winner = true;
+
         }
         else if(board[0][2][0] === 0 && board[1][1][0] === 0 && board[2][0][0] === 0){
             console.log(" O is winner");
+            winner = true;
+
+        }
+        else{
+            winner = false;
         }
         
     }
@@ -130,7 +103,18 @@ let checkWinner = () =>{
 
 blocks.forEach((element,index) => {
 
+   
     element.addEventListener("click", () => {
+
+        if(winner || element.innerHTML.trim() !== ""){
+            return;
+        }
+        else{
+            console.log(clickCount)
+            if(clickCount === 8){
+                console.log("Tie");
+            }
+        }
         clickCount++;
         if(element.innerHTML.trim() === ""){
 
@@ -144,10 +128,22 @@ blocks.forEach((element,index) => {
             }
         }
 
-       checkWinner();
+       checkWinner(element);
+     
         // console.log(board[0][0],board[0][1],board[0][2]);
     })
 
 });
+resetGameBtn.addEventListener("click", () => {
+    clickCount = 0;
+    blocks.forEach((element) => {
+        element.innerHTML = "";
+    })
+    board = [
+        [[],[],[]],
+        [[],[],[]],
+        [[],[],[]],
+    ]
+})
 
 
