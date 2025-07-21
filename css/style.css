@@ -132,11 +132,11 @@ body {
 }
 
 .block:not(.block3, .block6, .block9) {
-    border-right: 4px solid #FFFFFF;
+    border-right: 4px dashed #FFFFFF;
 }
 
 .block:not(.block7, .block8, .block9) {
-    border-bottom: 4px solid #FFFFFF;
+    border-bottom: 4px dashed #FFFFFF;
 }
 
 .block:hover {
