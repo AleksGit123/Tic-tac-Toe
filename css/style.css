@@ -1,0 +1,266 @@
+body {
+    background-image: url(/images/retroBg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+.font {
+    font-family: "Micro 5", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.main_container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 80px;
+    width: 450px;
+    height: 650px;
+    border: 4px solid #ce64ff;
+    backdrop-filter: blur(5px);
+    padding: 8px;
+    border-radius: 15px;
+    /* background-color: black; */
+    background-image: url("/images/download.png");
+    background-position: center;
+    background-size: cover;
+    box-shadow: 0px 4px 0px 5px #000000;
+    /* background-image: url("/images/gameboyBg.jpg"); */
+
+}
+
+.screen {
+    display: grid;
+    align-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 100%;
+    height: 310px;
+    padding: 25px;
+    background: linear-gradient(to bottom, #8BAC0F, #9BBC0F);
+}
+
+
+/* blocks */
+.block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+
+}
+
+.block:not(.block3, .block6, .block9) {
+    border-right: 4px solid #FFFFFF;
+}
+
+.block:not(.block7, .block8, .block9) {
+    border-bottom: 4px solid #FFFFFF;
+}
+
+.block:hover {
+    cursor: pointer;
+    background-color: #8bec53;
+
+}
+
+.x_div {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    /* transform: translateX(25px); */
+}
+
+.line_1 {
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 4px;
+    transform: rotate(40deg);
+
+}
+
+.x_writing1 {
+    animation: writingLine1 .6s forwards;
+}
+
+.x_writing2 {
+    animation: writingLine1 .6s .4s forwards;
+}
+
+.line_2 {
+    opacity: 0;
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 80%;
+    height: 4px;
+    transform: rotate(-40deg);
+}
+
+
+@keyframes writingLine1 {
+    0% {
+        opacity: 0;
+        width: 0;
+    }
+
+    20% {
+        opacity: 1;
+        width: 20%;
+    }
+
+    40% {
+        opacity: 1;
+        width: 40%;
+    }
+
+    60% {
+        opacity: 1;
+        width: 60%;
+    }
+
+    80% {
+        opacity: 1;
+        width: 70%;
+    }
+
+    100% {
+        opacity: 1;
+        width: 80%;
+    }
+}
+
+.circle_writing {
+    animation: circleWriting .5s linear forwards;
+
+}
+
+.circle {
+    width: 72%;
+    height: 85%;
+    border-radius: 50%;
+    border: 4px solid #FFFFFF;
+}
+
+
+@keyframes circleWriting {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* div for buttons */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+/* div for movement buttons */
+.move_buttons {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 160px;
+    min-height: 160px;
+    /* background-color: black; */
+    background-color: #ff0000;
+    border-radius: 15px;
+}
+
+.shadow {
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    filter: drop-shadow(0px 4px 0px #4a4949);
+    transition: .1s;
+    /* border: 4px solid red; */
+}
+
+.shadow:active {
+    filter: drop-shadow(0px 0px 0px #FFFFFF);
+}
+
+.shadow:active>div {
+    transform: translate(0px, 4px);
+}
+
+
+
+.left,
+.right,
+.top,
+.bottom {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: #000000;
+    clip-path: polygon(50% 0, 100% 38%, 100% 100%, 0 100%, 0% 38%);
+    border-radius: 5px;
+    transition: .1s;
+}
+
+
+
+.s_left {
+    top: 50px;
+    left: 15px;
+    transform: rotate(90deg);
+}
+
+.s_top {
+    /* transform: rotate(90deg); */
+    top: 14px;
+    left: auto;
+    transform: rotate(180deg);
+
+}
+
+.s_right {
+    transform: rotate(-90deg);
+    right: 15px;
+    top: 50px;
+
+}
+
+.s_bottom {
+    left: auto;
+    bottom: 22px;
+}
+
+/* div for reset/start button */
+.start_reset_btn {
+    background-color: #c3c0c1;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.start_reset_btn>img {
+    cursor: pointer;
+}
+
+.start_btn {
+    transform: translate(-10px, 20px);
+}
+
+.reset_btn {
+    transform: translate(10px, -10px)
+}
+
+.hide {
+    display: none;
+}
